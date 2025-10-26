@@ -44,28 +44,69 @@ body.dark-mode {
     display: block; /* Show only the active page */
 }
 
-/* ===== NEW HEADER STYLE ===== */
-/* This is the main fix */
+/* ===== FINAL HEADER STYLE (v4) ===== */
 header {
-    position: relative; /* Allows us to position icons in the corners */
-    text-align: center; /* Centers the title by default */
-    height: 30px; /* Gives it a fixed height */
+    position: relative; /* Container for positioning */
+    display: flex; /* Arrange items horizontally */
+    justify-content: space-between; /* Space out left, center, right */
+    align-items: center; /* Vertically align items */
+    height: 30px;
     margin-bottom: 2rem;
 }
 
 header h1 {
     font-size: 1.8rem;
     margin: 0;
-    /* The title is now centered */
+    /* Allow title to shrink if needed, keep centered */
+    flex-grow: 1; /* Takes up space */
+    text-align: center; /* Center text within its space */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 30px; /* Vertically center */
+     /* Add padding so text doesn't touch icons */
+    padding: 0 5px;
 }
 
-.theme-toggle, .add-task-btn {
-    position: absolute; /* Take icons out of the layout flow */
+/* General style for header buttons/icons */
+.header-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /* Give icons a fixed width to help balance layout */
+    width: 30px;
+    justify-content: center;
+}
+
+/* Style for the left-aligned icon(s) */
+.header-btn-left {
+   /* Already positioned by flexbox */
+}
+
+/* Style for the right-aligned icon group */
+.header-buttons {
+   display: flex;
+   align-items: center;
+   gap: 15px; /* Space between icons on the right */
+   /* Give the group a width equivalent to left side + gap */
+   /* Adjust width based on how many icons are on right */
+   min-width: calc(30px + 15px + 30px);
+   justify-content: flex-end; /* Align icons to the right within container */
+}
+
+ /* Home screen theme toggle positioning (remains top-right) */
+.theme-toggle {
+    position: absolute; /* Keep absolute for home screen */
     top: 0;
     right: 0;
     cursor: pointer;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    width: 30px; /* Give it a width */
+    justify-content: center;
 }
-/* ============================ */
+/* ==================================== */
 
 
 /* --- Bottom Navigation --- */
@@ -99,28 +140,24 @@ header h1 {
 
 
 /* --- Home Screen --- */
-/* NEW: We use flexbox to center the content vertically */
 #page-home main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Calculate height to be screen height minus header and nav */
-    min-height: calc(100vh - var(--nav-height) - 6rem); 
+    min-height: calc(100vh - var(--nav-height) - 6rem);
 }
 
 .score-circle-container {
     display: flex;
     justify-content: center;
-    /* We removed the old margin */
 }
 
 .score-circle {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    /* FIX: Border color now uses our new variable */
-    border: 10px solid var(--score-color); 
+    border: 10px solid var(--score-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,7 +167,6 @@ header h1 {
 .score-circle span {
     font-size: 5rem;
     font-weight: bold;
-    /* FIX: Number color now uses our new variable */
     color: var(--score-color);
 }
 
@@ -145,7 +181,7 @@ header h1 {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 500;
-    margin-top: 2rem; /* Added some space */
+    margin-top: 2rem;
     color: var(--text-color);
 }
 
@@ -159,6 +195,7 @@ header h1 {
     background-color: var(--light-grey-color);
     border-radius: 8px;
     margin-bottom: 10px;
+    gap: 10px; /* Add some gap */
 }
 
 .task-item .task-deadline {
@@ -335,27 +372,24 @@ header h1 {
     color: var(--text-color);
 }
 
-/* --- FIX: Home Screen Task List Clutter (v2) --- */
+/* --- FIX: Home Screen Task List Clutter --- */
 #page-home main {
-    /* This was the problem. We are overriding it. */
     align-items: initial;
-    
-    /* We still want the circle and note to be centered */
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 }
 
 #home-task-list {
-    width: 80%;          /* CHANGED: Was 100%. This will add 5% margin on each side. */
-    max-width: 500px;     /* But not *too* wide on a desktop */
-    margin-top: 2rem;     /* Add some space below the "Barely Average" note */
+    width: 90%; /* Adjusted width */
+    max-width: 500px;
+    margin-top: 2rem;
 }
 
-/* --- NEW: Task Action Buttons (Edit/Delete) --- */
+/* --- Task Action Buttons (Edit/Delete) --- */
 .task-item-actions {
     display: flex;
-    gap: 15px; /* Adds space between the buttons */
+    gap: 15px;
 }
 
 .task-item-actions i {
@@ -372,8 +406,7 @@ header h1 {
 .task-item .task-details {
     display: flex;
     align-items: center;
-    /* Allow it to take up available space and push buttons to the right */
-    flex-grow: 1; 
+    flex-grow: 1;
     min-width: 0; /* Fixes a flexbox overflow bug */
 }
 
@@ -386,16 +419,16 @@ header h1 {
     background-color: var(--light-grey-color);
     border-radius: 8px;
     margin-bottom: 10px;
-    gap: 10px; /* Add some gap */
+    gap: 10px;
 }
 
-/* --- NEW: Completed Task Style --- */
+/* --- Completed Task Style --- */
 .task-item.completed .task-name {
     text-decoration: line-through;
     opacity: 0.6;
 }
 
-/* --- NEW: Incomplete Task List for Yesterday's Report --- */
+/* --- Incomplete Task List for Yesterday's Report --- */
 .incomplete-task-list {
     width: 90%;
     max-width: 500px;
@@ -415,25 +448,7 @@ header h1 {
     opacity: 0.8;
 }
 
-/* --- NEW: Header Buttons Container --- */
-.header-buttons {
-    position: absolute; /* Take icons out of the layout flow */
-    top: 0;
-    right: 0;
-    display: flex;
-    gap: 15px; /* Space between the icons */
-}
-
-.header-btn {
-    cursor: pointer;
-}
-
-/* This overrides the old ID-based selector */
-.add-task-btn {
-    position: static; 
-}
-
-/* --- NEW: Notification Bell Icon --- */
+/* --- Notification Bell Icon --- */
 #notifications-btn {
     color: var(--grey-color); /* Default off color */
 }
