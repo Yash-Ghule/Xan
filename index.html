@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Xan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <div class="page" id="page-home">
+            <header>
+                <h1 id="home-title">Today</h1>
+                <div class="theme-toggle" id="theme-toggle">
+                    <i data-feather="sun"></i>
+                </div>
+            </header>
+            
+            <main>
+                <div class="score-circle-container">
+                    <div class="score-circle" id="score-circle">
+                        <span id="score-percent">50</span>
+                        <em>%</em>
+                    </div>
+                </div>
+                <p class="score-note" id="score-note">Barely Average</p>
+
+                <div class="task-list-container" id="home-task-list">
+                    </div>
+            </main>
+        </div>
+
+        <div class="page" id="page-track">
+            <header>
+                <h1>Track Everything 🔍</h1>
+            </header>
+            <main>
+                <div class="filter-container">
+                    <input type="date" id="filter-date">
+                    <select id="filter-score">
+                        <option value="">Filter by score...</option>
+                        <option value="100">100%</option>
+                        <option value="80-99">80-99%</option>
+                        <option value="60-80">60-80%</option>
+                        <option value="40-60">40-60%</option>
+                        <option value="10-40">10-40%</option>
+                        <option value="0-10">0-10%</option>
+                    </select>
+                </div>
+                <div class="history-list-container" id="history-list">
+                    </div>
+            </main>
+        </div>
+
+        <div class="page" id="page-task">
+            <header>
+                <h1>Plan the battle</h1>
+                <div class="header-buttons">
+                    <div class="header-btn" id="notifications-btn">
+                        <i data-feather="bell"></i>
+                    </div>
+                    <div class="header-btn" id="clear-data-btn">
+                        <i data-feather="trash"></i>
+                    </div>
+                    <div class="header-btn" id="add-task-btn-main">
+                        <i data-feather="plus"></i>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="task-list-container" id="task-list-page">
+                    </div>
+            </main>
+        </div>
+
+    </div>
+
+    <nav class="bottom-nav">
+        <button class="nav-btn" data-page="page-track">
+            <i data-feather="bar-chart-2"></i>
+            <span>Track</span>
+        </button>
+        <button class="nav-btn active" data-page="page-home">
+            <i data-feather="grid"></i>
+            <span>Home</span>
+        </button>
+        <button class="nav-btn" data-page="page-task">
+            <i data-feather="settings"></i>
+            <span>Task</span>
+        </button>
+    </nav>
+
+    <div class="preloader" id="preloader">
+        <h1>Stay Hard</h1>
+        <p>Keep Working</p>
+    </div>
+
+    <div class="modal-overlay" id="add-task-modal">
+        <div class="modal-content">
+            <h3 id="modal-title">Add New Task</h3>
+            <input type="text" id="task-name-input" placeholder="Task name...">
+            <label>Due Date:</label>
+            <input type="date" id="task-date-input">
+            <label>Due Time (Optional):</label>
+            <input type="time" id="task-time-input">
+            <div class="modal-actions">
+                <button id="modal-cancel-btn">Cancel</button>
+                <button id="modal-save-btn">Save</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

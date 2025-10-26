@@ -1,0 +1,20 @@
+{
+  "name": "Accountability App",
+  "short_name": "Accountable",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "https://placehold.co/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://placehold.co/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
