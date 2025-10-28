@@ -101,7 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!tasksByDate[task.date]) tasksByDate[task.date] = [];
             tasksByDate[task.date].push(task);
         });
-        const sortedDates = Object.keys(tasksByDate);
+        // const sortedDates = Object.keys(tasksByDate);
+        const sortedDates = Object.keys(tasksByDate).sort((a, b) => b.localeCompare(a)); // Sort newest date first
         if (sortedDates.length === 0) taskListPage.innerHTML = '<p style="text-align:center; opacity: 0.5;">No tasks planned yet.</p>';
         sortedDates.forEach(date => {
             const dateHeader = document.createElement('h3');
